@@ -1,8 +1,7 @@
-#!/usr/bin/env python3
-"""
-Runs a single BBR/CUBIC experiment in Mininet.
-Usage: sudo python3 run_one.py <algo> <rtt> <bw> <buffer> <rep> <duration> <csvfile>
-"""
+# run_one.py
+# This script iterates through 3 runs of 64 configurations for BBR vs. CUBIC congestion Control Alrogithms
+# This script was designed to run using native tools in the Linux Mint environment
+# Julijan Garbek - CIS 437
 
 import sys
 import time
@@ -71,17 +70,17 @@ def run_experiment(algo, rtt, bw, buf, rep, duration, csvfile):
         net.stop() # Stop virtual network
         return # Skip to next run
 
-    # Run iperf3 experiment run, sending data through the bottleneck and saving the results to a JSON format in the 'result'
+    # Run iperf3 experiment run, sending data through the bottleneck and saving the results to a JSON format in the 'result' variable
     h2.cmd('iperf3 -s -D -p 5201') # Start iperf3 on host h2, port 5201
     time.sleep(1) # Wait 1s for connection to establish
     result = h1.cmd('iperf3 -c 10.0.2.1 -p 5201 -t {} -J'.format(duration)) # Run iperf3 on host h1 for 1 minute, and output in JSON format
 
     # Parse JSON output
     try:
-        data = json.loads(result)
-        goodput = data['end']['sum_sent']['bits_per_second'] / 1e6
-        retransmits = data['end']['sum_sent'].get('retransmits', 0)
-    except:
+        data = json.loads(result) # Convert JSON string in result to a Python dictionary variable 'data'
+        goodput = data['end']['sum_sent']['bits_per_second'] / 1e6 # Extract goodput and convert it from bits/sec to Megabits/sec
+        retransmits = data['end']['sum_sent'].get('retransmits', 0) # Extract retransmissions (default 0 if none)
+    except: # If parsing fails, default goodput and retransmits to 0
         goodput = 0
         retransmits = 0
 

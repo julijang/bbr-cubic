@@ -1,10 +1,7 @@
-#!/usr/bin/env python3
-"""
-Dumbbell topology for BBR vs CUBIC experiments.
-h1 --- s1 --- r1 --- s2 --- h2
-The bottleneck link is between r1 and s2, where we apply
-tc-tbf (bandwidth/buffer) and tc-netem (delay).
-"""
+# topo.py
+# This file withholds the dumbbell topology which the script is manufactured to run on
+# The topology is as follows : H1 --- S1 --- R1 --- S2 --- H2
+# Julijan Garbek - CIS 437
 
 from mininet.net import Mininet
 from mininet.node import OVSBridge
