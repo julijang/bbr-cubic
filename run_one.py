@@ -1,5 +1,5 @@
 # run_one.py
-# This script iterates through 3 runs of 64 configurations for BBR vs. CUBIC congestion Control Alrogithms
+# This script builds 64 configurations for BBR vs. CUBIC congestion Control Alrogithms according to topology
 # This script was designed to run using native tools in the Linux Mint environment
 # Julijan Garbek - CIS 437
 

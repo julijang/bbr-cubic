@@ -1,10 +1,8 @@
-#!/bin/bash
-#
-# BBR vs CUBIC Automated Experiment Script
-# Replicating Figures 5(a) and 5(b) from Cao et al., IMC 2019
-#
+# run_experiments.sh
+# Bash automation script that loops through 3 sets of 64 configurations (192 combinations) congestion control algorithms
+# Julijan Garbek - CIS 437
 
-# --- Parameters ---
+# Parameters
 RTTS=(10 50 100 200)
 BWS=(10 100 500 1000)
 BUFFERS=(100000 10000000)
@@ -61,6 +59,7 @@ done
 END_TIME=$(date +%s)
 ELAPSED=$(( END_TIME - START_TIME ))
 
+# Output
 echo ""
 echo "============================================"
 echo "  ALL EXPERIMENTS COMPLETE"
