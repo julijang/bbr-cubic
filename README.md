@@ -15,7 +15,8 @@ In the deep buffer scenario, CUBIC outperformed BBR across all tested configurat
 ### Comparison to Paper
 These results align qualitatively with the paper's Figures 5(a) and 5(b). The paper found BBR gains exceeding 100% in shallow buffers at high BDP, and CUBIC gains up to 34% in deep buffers — both consistent with my findings. My 4×4 grid produces a coarser heatmap than the paper's 8×8 grid, but the same fundamental pattern is clearly visible: red (BBR wins) dominates the shallow buffer heatmap at high BDP, and blue (CUBIC wins) dominates the deep buffer heatmap uniformly.
 
-Note - Add image from laptop of both heatmaps
+![Paper's Original Heatmap](bbr_paper_heatmap.png)
+![My Replication Heatmap](bbr_experiment_heatmap.png)
 
 # Discussion
 The biggest challenge was the initial environment setup. This included installing Linux Mint, configuring Mininet, and getting the automation scripts to work reliably. A heredoc-based approach for embedding Python inside bash initially failed due to quoting issues, which was resolved by separating the experiment logic into a standalone Python file (run_one.py) called by the bash loop (run_experiments.sh). The tc-tbf burst parameter also required tuning to ensure the bandwidth was actually being bottlenecked properly. One of my initial tests showed a peak of 959 Mbps on what was supposed to be a 100 Mbps constrained link. This was corrected.
